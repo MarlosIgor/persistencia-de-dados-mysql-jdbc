@@ -12,16 +12,12 @@ public class test {
         Contato save = Contato.builder().nome("Igor").email("Igor@gmai.com").build();
         CamadaDeRegras.save(save);
 
+        Contato updateNomeEmail = Contato.builder().id(2).nome("quiteria").email("quiteria@gmail.com").build();
+        CamadaDeRegras.update(updateNomeEmail);
+
+        CamadaDeRegras.deleteID(7);
+
         List<Contato> contatos = AgendaRepository.findByName("Igor");
         System.out.printf("Os produtos encontraram %s %n", contatos);
-
-        CamadaDeRegras.deleteID(1);
-
-
-
-
-
-
-
     }
 }
