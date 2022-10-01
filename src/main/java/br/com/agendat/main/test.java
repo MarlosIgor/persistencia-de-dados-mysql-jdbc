@@ -9,7 +9,7 @@ import java.util.List;
 public class test {
     public static void main(String[] args) {
 
-        Contato save = Contato.builder().nome("Igor").email("Igor@gmai.com").build();
+        Contato save = Contato.builder().nome("Igor").email("Igor@gmail.com").build();
         CamadaDeRegras.save(save);
 
         Contato updateNomeEmail = Contato.builder().id(2).nome("quiteria").email("quiteria@gmail.com").build();
