@@ -6,16 +6,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AgendaRepository {
 
     public static void save(Contato contato) {
         String sql = "INSERT INTO agenda.contatos (nome, email) VALUES ('%s', '%s')".formatted(contato.getNome(), contato.getEmail());
         try (Connection conn = ConnectionFactory.getConnection(); Statement stmt = conn.createStatement()) {
             int rowsAffected = stmt.executeUpdate(sql);
-            System.out.printf("Produtor inserido  nas linhas do banco de dados afetadas %s %s%n", contato.getNome(), rowsAffected);
+            System.out.printf("Produtor inserido na linha do banco de dados afetadas %s %s %n", contato.getNome(), rowsAffected);
         } catch (SQLException e) {
-            System.out.printf("Erro ao tentar inserir conto %s %s %n", contato.getNome(), e);
+            System.out.printf("Erro ao tentar inserir contato %s %s %n", contato.getNome(), e);
             e.printStackTrace();
         }
     }
@@ -31,7 +30,7 @@ public class AgendaRepository {
     }
 
     public static List<Contato> findByName(String nome) {
-        System.out.println("Encontrar contrato pelo nome");
+        System.out.println("Encontrar contato pelo nome");
         List<Contato> producers = new ArrayList<>();
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement ps = preparedStatementFindByName(conn, nome); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -54,7 +53,7 @@ public class AgendaRepository {
     public static void update(Contato contato) {
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement ps = preparedStatementUpdate(conn, contato)) {
             int rowsAffected = ps.executeUpdate();
-            System.out.printf("Atualizando agenda.contato %d na linha do banco de dados afetadas %s", contato.getId(), rowsAffected);
+            System.out.printf("Atualizando contato %d na linha do banco de dados afetadas %s", contato.getId(), rowsAffected);
         } catch (SQLException e) {
             System.out.printf("Erro ao tentar atualizar contato %d %s", contato.getId(), e);
         }
